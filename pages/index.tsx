@@ -71,9 +71,10 @@ export default function Home() {
         <Image
           src={property.image}
           alt={property.name}
-          width={400}
+          width={400} // or any value depending on layout
           height={300}
-          className="w-full h-48 object-cover"
+          className="w-full h-60 object-cover rounded-xl"
+          unoptimized // optional: if the image is hosted externally and not optimized
         />
 
         <div className="p-4">
