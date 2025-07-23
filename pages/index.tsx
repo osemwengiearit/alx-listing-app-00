@@ -1,6 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 import Pill from '@/components/ui/Pill';
+import { PROPERTYLISTINGSAMPLE } from '@/constants';
+import Image from 'next/image';
 
 const filters = [
   'Top Villa',
@@ -54,3 +56,47 @@ export default function Home() {
     </>
   );
 }
+
+{
+  /* Listing Section */
+}
+<section className="px-4 md:px-10 py-8 bg-gray-50">
+  <h2 className="text-xl font-semibold mb-6">Explore Properties</h2>
+  <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    {PROPERTYLISTINGSAMPLE.map((property, index) => (
+      <div
+        key={index}
+        className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-[1.02]"
+      >
+        <Image
+          src={property.image}
+          alt={property.name}
+          width={400}
+          height={300}
+          className="w-full h-48 object-cover"
+        />
+
+        <div className="p-4">
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="text-lg font-semibold">{property.name}</h3>
+            <span className="text-sm bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
+              ⭐ {property.rating}
+            </span>
+          </div>
+          <p className="text-sm text-gray-600">
+            {property.address.city}, {property.address.country}
+          </p>
+          <p className="text-gray-800 font-bold mt-2">
+            ${property.price.toLocaleString()}
+            <span className="text-sm text-gray-500 font-medium"> / night</span>
+          </p>
+          {property.discount && (
+            <p className="text-red-500 text-sm mt-1 font-semibold">
+              {property.discount}% off!
+            </p>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>;
