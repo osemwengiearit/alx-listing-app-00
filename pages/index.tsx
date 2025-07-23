@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Pill from '@/components/ui/Pill';
 import { PROPERTYLISTINGSAMPLE } from '@/constants';
 import Image from 'next/image';
+import PropertyCard from '@/components/cards/PropertyCard';
 
 const filters = [
   'Top Villa',
@@ -98,6 +99,18 @@ export default function Home() {
           )}
         </div>
       </div>
+    ))}
+  </div>
+</section>;
+
+{
+  /* Property Listing Section */
+}
+<section className="px-4 md:px-10 py-6 bg-gray-50">
+  <h2 className="text-xl font-semibold mb-4">Top Listings</h2>
+  <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    {PROPERTYLISTINGSAMPLE.map((property, idx) => (
+      <PropertyCard key={idx} property={property} />
     ))}
   </div>
 </section>;
