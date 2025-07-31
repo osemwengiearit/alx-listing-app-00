@@ -1,5 +1,5 @@
-import { PropertyProps } from '@/interfaces/index';
-import Image from 'next/image';
+import { PropertyProps } from "@/interfaces";
+import BookingSection from "./BookingSection";
 
 const PropertyDetail: React.FC<{ property: PropertyProps }> = ({
   property,
@@ -16,32 +16,40 @@ const PropertyDetail: React.FC<{ property: PropertyProps }> = ({
 
       {/* Image Grid */}
       <div className="grid grid-cols-2 gap-4 mt-4">
-        <Image
+        <img
           src={property.image}
           alt={property.name}
-          width={800}
-          height={600}
-          className="w-full h-96 object-cover rounded-lg col-span-2"
+          className="col-span-2 w-full h-96 object-cover rounded-lg"
         />
-        {/* Add more images here if available */}
       </div>
 
-      {/* Description */}
-      <div className="mt-4">
-        <h2 className="text-2xl font-semibold">Description</h2>
-        <p>{property.description}</p>
-      </div>
+      {/* Main Layout */}
+      <div className="flex flex-col lg:flex-row gap-6 mt-6">
+        {/* Left: Details */}
+        <div className="lg:w-2/3">
+          {/* Description */}
+          <div className="mt-4">
+            <h2 className="text-2xl font-semibold">Description</h2>
+            <p>{property.description}</p>
+          </div>
 
-      {/* Amenities */}
-      <div className="mt-4">
-        <h2 className="text-2xl font-semibold">What this place offers</h2>
-        <ul className="flex flex-wrap space-x-4">
-          {property.category.map((amenity, index) => (
-            <li key={index} className="bg-gray-200 p-2 rounded-md">
-              {amenity}
-            </li>
-          ))}
-        </ul>
+          {/* Amenities */}
+          <div className="mt-4">
+            <h2 className="text-2xl font-semibold">What this place offers</h2>
+            <ul className="flex flex-wrap space-x-4">
+              {property.category.map((amenity, index) => (
+                <li key={index} className="bg-gray-200 p-2 rounded-md mt-2">
+                  {amenity}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Right: Booking Section */}
+        <div className="lg:w-1/3">
+          <BookingSection price={property.price} />
+        </div>
       </div>
     </div>
   );
