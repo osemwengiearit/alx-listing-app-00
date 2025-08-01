@@ -1,5 +1,6 @@
 import { PropertyProps } from "@/interfaces";
 import BookingSection from "./BookingSection";
+import Image from 'next/image';
 
 const PropertyDetail: React.FC<{ property: PropertyProps }> = ({
   property,
@@ -16,12 +17,13 @@ const PropertyDetail: React.FC<{ property: PropertyProps }> = ({
 
       {/* Image Grid */}
       <div className="grid grid-cols-2 gap-4 mt-4">
-        <img
-          src={property.image}
-          alt={property.name}
-          className="col-span-2 w-full h-96 object-cover rounded-lg"
-        />
-      </div>
+        <Image
+  src={property.image}
+  alt={property.name}
+  width={800}
+  height={600}
+  className="w-full h-96 object-cover rounded-lg col-span-2"
+/>
 
       {/* Main Layout */}
       <div className="flex flex-col lg:flex-row gap-6 mt-6">
